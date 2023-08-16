@@ -39,7 +39,7 @@ for i in $(ls -1 *.mp3); do ffmpeg -i $i -ar 16000 -vn -ac 1 $(echo $i | sed -e 
 # transkripty wutworic
 
 ```bash
-for i in $(ls -1 *.mp3); do cat ../validated.tsv | grep $i > ./test.txt; IFS=$'\t' read -a myArray < ./test.txt; echo "${myArray[2]}" > $(echo $i | sed -e s/\.mp3/\.trl/ ) ; done
+for i in $(ls -1 *.mp3); do cat ../validated.tsv | grep $i > ./test.txt; IFS=$'\t' read -a myArray < ./test.txt; echo -n "${myArray[2]}" > $(echo $i | sed -e s/\.mp3/\.trl/ ) ; done
 ```
 
 ## Dataju wuzwolic a spoznawanje / merjenje wuwjesc
@@ -54,6 +54,12 @@ Priklad kiz wulici CER (character error rate):
 
 ```bash
 python examples/mms/asr/infer/mms_infer.py --model $(pwd)/examples/mms/mms1b_all.pt --lang hsb --audio $(pwd)/../Downloads/cv-corpus-14.0-2023-06-23/hsb/clips/common_voice_hsb_20404866.wav  --format none
+```
+
+Drobnosce widzice w log file:
+
+```bash
+tail /tmp/checkpoint/$USER/INFER/None/hsb\:dev/infer.log
 ```
 
 ### Wuwjedzenje prikladow bjez grafikowej karty
