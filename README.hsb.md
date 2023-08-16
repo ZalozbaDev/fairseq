@@ -4,6 +4,13 @@
 
 - instalacija, hlej [README.md](README.md)
 
+Priklad:
+
+```bash
+pip install --editable ./
+```
+
+
 - model wobstarać:
 
 ```bash
@@ -40,15 +47,27 @@ for i in $(ls -1 *.mp3); do cat ../validated.tsv | grep $i > ./test.txt; IFS=$'\
 Priklad kiz wulici WER (word error rate):
 
 ```bash
-python examples/mms/asr/infer/mms_infer.py --model examples/mms/mms1b_all.pt --lang hsb --audio ../Downloads/cv-corpus-14.0-2023-06-23/hsb/clips/_voice_hsb_20367572.wav  --format letter
+python examples/mms/asr/infer/mms_infer.py --model $(pwd)/examples/mms/mms1b_all.pt --lang hsb --audio $(pwd)/../Downloads/cv-corpus-14.0-2023-06-23/hsb/clips/common_voice_hsb_20404866.wav --format letter
 ```
 
 Priklad kiz wulici CER (character error rate):
 
 ```bash
-python examples/mms/asr/infer/mms_infer.py --model examples/mms/mms1b_all.pt --lang hsb --audio ../Downloads/cv-corpus-14.0-2023-06-23/hsb/clips/_voice_hsb_20367572.wav  --format non
+python examples/mms/asr/infer/mms_infer.py --model $(pwd)/examples/mms/mms1b_all.pt --lang hsb --audio $(pwd)/../Downloads/cv-corpus-14.0-2023-06-23/hsb/clips/common_voice_hsb_20404866.wav  --format none
 ```
 
 ### Wuwjedzenje prikladow bjez grafikowej karty
 
+Zapisajce prosu scehowacu opciju do dataju "examples/mms/asr/config/infer_common.yaml" na spocatku:
+
+```code
+# @package _group_
+
+# tutu opciju zapisac
+common:
+  cpu: True
+# konc opcije
+task:
+
+```
 
