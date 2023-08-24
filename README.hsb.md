@@ -77,3 +77,22 @@ task:
 
 ```
 
+## Swojsku dataju wuziwac
+
+Na .wav dataju premenic:
+
+```bash
+ffmpeg -i moja_dataja_abo_videjo.mpX -ar 16000 -vn -ac 1 zwukowa_dataja.wav
+```
+
+Dummy za transkripty wutworic:
+
+```bash
+echo "Witajce k nam" > zwukowa_dataja.trl
+```
+
+Potom tutu dataju k spoznawanju wuziwac:
+
+```bash
+python examples/mms/asr/infer/mms_infer.py --model $(pwd)/examples/mms/mms1b_all.pt --lang hsb --audio $(pwd)/zwukowa_dataja.wav --format letter
+```

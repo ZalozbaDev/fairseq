@@ -36,8 +36,11 @@ def process(args):
                         data= t.read().replace('\n',' ').replace(' ', '|').lower()
                         fl.write(' '.join(list(data.replace(' ', '|')))+'\n')
                         ft.write(data.replace('|', ' ')+'\n')
+                else:
+                	print(">>> transcript file not found: " + trl, file=sys.stderr)
         with open(tmpdir / "dev.uid", "w") as fw:
             fw.write(f"{audio}\n"*len(args.audio))
+        print('>>> check file in ' + str(tmpdir.absolute())  + " for prepared data", file=sys.stderr)
         cmd = f"""
         PYTHONPATH=. PREFIX=INFER HYDRA_FULL_ERROR=1 python examples/speech_recognition/new/infer.py -m --config-dir examples/mms/asr/config/ --config-name infer_common decoding.type=viterbi dataset.max_tokens=4000000 distributed_training.distributed_world_size=1 "common_eval.path='{args.model}'" task.data={tmpdir} dataset.gen_subset="{args.lang}:dev" common_eval.post_process={args.format} decoding.results_path={tmpdir} decoding.unique_wer_file=true
         """
