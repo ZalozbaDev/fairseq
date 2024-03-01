@@ -4,6 +4,10 @@
 
 # @package _group_
 
+# tutu opciju zapisac
+common:
+  cpu: True
+# konc opcije
 task:
   _name: audio_finetuning
   data: null
